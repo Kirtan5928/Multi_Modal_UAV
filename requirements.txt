@@ -1,28 +1,12 @@
-# Target: Python 3.10, win_amd64 (confirmed installed on the facility PC —
-# do not change without re-confirming on-site)
-# CPU-only, confirmed — no CUDA toolkit is installed on the facility PC.
-#
-# torch/torchvision are DELIBERATELY NOT listed here. They must be downloaded
-# from PyTorch's dedicated CPU index (https://download.pytorch.org/whl/cpu),
-# not the default PyPI index, or you'll pull a multi-GB CUDA-bundled build
-# that's wasted on this hardware. build_wheelhouse.bat handles this as a
-# separate step — see that file, do not just add "torch" here.
-#
-# ultralytics is also handled separately (--no-deps in build_wheelhouse.bat)
-# for the same reason: it lists torch as a dependency, and a normal resolve
-# would re-trigger the CUDA-wheel problem. Its actual other dependencies are
-# listed explicitly below instead.
+# Target: Python 3.14, Windows 64-bit.
+# Facility deployment target. Final reproducibility is defined by the
+# offline wheelhouse, versions.txt, and hashes.sha256.
 
-# --- Phase 1: foundation ---
 pyyaml>=6.0
 python-dotenv>=1.0
 click>=8.1
-
-# --- Phase 2: media ingestion + YOLO/tracking ---
-# (torch/torchvision: see build_wheelhouse.bat, CPU index)
-opencv-python-headless>=4.9   # headless: no GUI libs needed, this runs without a display
+opencv-python-headless>=4.9
 numpy>=1.26
-# ultralytics: see build_wheelhouse.bat (--no-deps), its own deps listed below
 matplotlib>=3.8
 pandas>=2.1
 pillow>=10.0
@@ -31,11 +15,6 @@ tqdm>=4.66
 psutil>=5.9
 py-cpuinfo>=9.0
 scipy>=1.11
-
-# --- Phase 4: audio pipeline ---
 faster-whisper>=1.0
-# ctranslate2 is faster-whisper's own dependency, pulled in automatically
-
-# --- Phase 6: TTS/PDF/UI ---
 streamlit>=1.35
 reportlab>=4.1
