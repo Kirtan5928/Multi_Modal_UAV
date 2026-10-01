@@ -17,8 +17,14 @@ public_adaptation:
     - name: UAVDT
       role: aerial_vehicle
       source: https://sites.google.com/view/grli-uavdt
+    - name: Purdue-UAV-Dataset
+      role: small_airborne_targets_tracking
+      source: https://engineering.purdue.edu/~bouman/UAV_Dataset/
+    - name: KI4Flight
+      role: light_aircraft_detection
+      source: https://zenodo.org/records/14258778
     - name: xView
-      role: overhead_small_objects_aircraft
+      role: overhead_small_objects_aircraft_buildings
       source: https://xviewdataset.org/
   max_imgsz_candidates: [640, 960, 1280]
 
