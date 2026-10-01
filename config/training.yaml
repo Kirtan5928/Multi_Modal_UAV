@@ -1,0 +1,53 @@
+# Phase 3 — aerial-domain adaptation and facility fine-tuning.
+# Keep sensitive facility footage outside Git. This file contains only experiment policy.
+
+baseline:
+  model: models/yolo/yolo11n.pt
+  imgsz: 640
+  sample_fps: 3
+  conf: 0.25
+  iou: 0.45
+  tracker: bytetrack.yaml
+
+public_adaptation:
+  datasets:
+    - name: VisDrone-DET
+      role: aerial_people_vehicle
+      source: https://github.com/VisDrone/VisDrone-Dataset
+    - name: UAVDT
+      role: aerial_vehicle
+      source: https://sites.google.com/view/grli-uavdt
+    - name: xView
+      role: overhead_small_objects_aircraft
+      source: https://xviewdataset.org/
+  max_imgsz_candidates: [640, 960, 1280]
+
+training:
+  pretrained_model: models/yolo/yolo11n.pt
+  device: auto
+  seed: 42
+  workers: 0
+  batch: 4
+  epochs_stage1: 20
+  epochs_stage2: 30
+  imgsz: 960
+  patience: 10
+  optimizer: AdamW
+  lr0_stage1: 0.001
+  lr0_stage2: 0.0003
+  freeze_stage1: 10
+  amp: true
+
+evaluation:
+  split_policy: video_or_time_block
+  min_test_videos: 1
+  report_per_class: true
+  report_small_objects: true
+  save_confusion_matrix: true
+
+facility:
+  train_data_root: data/facility_dataset
+  keep_raw_media_outside_git: true
+  annotation_format: yolo_txt
+  require_manifest: true
+  require_split_by_video: true
