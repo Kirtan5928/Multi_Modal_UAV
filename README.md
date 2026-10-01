@@ -118,3 +118,21 @@ Do not transfer or commit sensitive mission footage.
 
 The immediate engineering priority is to make the video/evidence foundation
 traceable and testable before adding the event/highlight/LLM layers.
+
+
+## Phase 3 — Aerial-Domain Adaptation
+
+The next engineering phase targets the facility-day failure mode: distant aerial targets were not reliably detected by the generic YOLO11n baseline. The repository now contains a reproducible baseline diagnostic, a YOLO-format dataset validator, and a training entry point for public aerial-domain adaptation.
+
+Public data is used only for development. Sensitive facility footage remains outside the repository and, when available, will be annotated and fine-tuned locally at the facility.
+
+Current public-data candidates:
+- VisDrone — drone-view people/vehicle detection and tracking.
+- UAVDT — aerial vehicle detection/tracking.
+- Purdue UAV Dataset — 1920×1080/30 FPS airborne-target video and tracking annotations.
+- KI4Flight — light/ultralight aircraft imagery captured from drones and ground cameras.
+- xView — optional overhead small-object/aircraft experiment.
+
+Do not treat this list as the final project ontology. The final classes will be selected after representative facility frames are reviewed.
+
+See `docs/phase_3_aerial_adaptation.md` and `config/training.yaml`.
