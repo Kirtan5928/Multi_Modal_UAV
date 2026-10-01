@@ -27,9 +27,17 @@ VisDrone is the first public dataset because it is specifically collected from d
 
 UAVDT is a second candidate focused on aerial vehicle detection/tracking. We will use it only for classes that map cleanly to the final ontology and will preserve its sequence boundaries when constructing validation data.
 
+### Purdue UAV Dataset
+
+The Purdue dataset contains 50 UAV video sequences totaling about 70,250 frames at 30 FPS, recorded at 1920×1080 or 1280×1060 from an airframe, with manually annotated multiple UAV targets. It is particularly useful for testing the small-target and temporal-tracking problem that resembles the facility's distant airborne objects.
+
+### KI4Flight
+
+KI4Flight contains images of light and ultralight aircraft captured both from drones in flight and from stationary cameras, with bounding-box annotations and some distance information. It is a strong candidate for the aircraft side of the airshow branch.
+
 ### xView
 
-xView is an overhead satellite-imagery dataset with many small/fine-grained objects, including aircraft and buildings. It is not treated as a drop-in substitute for UAV video because the viewpoint differs. It is an optional later experiment for small-object/aircraft representation, subject to its download and usage terms.
+xView is an overhead satellite-imagery dataset with many small/fine-grained objects, including aircraft and buildings. It is not treated as a drop-in substitute for UAV video because the viewpoint differs. It remains an optional later experiment for overhead small-object representation.
 
 ## What we will not do
 
@@ -75,5 +83,7 @@ Phase 3 is complete when:
 
 - VisDrone dataset repository: https://github.com/VisDrone/VisDrone-Dataset
 - UAVDT benchmark: https://sites.google.com/view/grli-uavdt
+- Purdue UAV Dataset: https://engineering.purdue.edu/~bouman/UAV_Dataset/
+- KI4Flight: https://zenodo.org/records/14258778
 - xView dataset: https://xviewdataset.org/
 - Ultralytics training documentation: https://docs.ultralytics.com/modes/train
